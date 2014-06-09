@@ -22,4 +22,10 @@ public class Checkpoint {
     
     public String getIntersection() { return this.intersection; }
     public double getDistanceFromStart() { return this.distanceFromStart; }
+    
+    @Override
+    public String toString() {
+        String s = intersection + ":  " + Double.toString(distanceFromStart);
+        return s;
+    }
 }

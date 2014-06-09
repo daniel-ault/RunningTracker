@@ -34,8 +34,10 @@ public class RunRoute {
     public void addCheckpoint(String intersection, double distanceFromStart) {
         if (routeList.isEmpty()) {
             //ERROR: need to add start point first
+            System.out.println("ERROR: need to add start point first");
         }
-        else if (routeList.get(routeList.size()).getDistanceFromStart() < distanceFromStart) {
+        else if (routeList.get(routeList.size()-1).getDistanceFromStart() > distanceFromStart) {
+            System.out.println("ERROR: distance must be larger than previous checkpoint");
             //ERROR: distance must be larger than previous checkpoint
         }
         else {
@@ -44,4 +46,13 @@ public class RunRoute {
         }
     }// addCheckpoint
     
+    
+    public String toString() {
+        String s = "";
+        for (Checkpoint c : routeList) {
+            s += c.toString() + "\n";
+        }
+        
+        return s;
+    }
 }
