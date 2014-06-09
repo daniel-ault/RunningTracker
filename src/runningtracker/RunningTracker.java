@@ -22,6 +22,7 @@ public class RunningTracker {
     public static RunRoute createRoute() {
         RunRoute route = new RunRoute();
         
+        route.setGoalPace(6);
         route.setStart("Minor and Spottswood");
         route.addCheckpoint("Park and Highland", 0.49);
         route.addCheckpoint("Park and Goodman", 1.1);
@@ -31,6 +32,10 @@ public class RunningTracker {
         route.addCheckpoint("Spottswood and Goodman", 2.51);
         route.addCheckpoint("Spottswood and Houston", 2.77);
         route.addCheckpoint("Patterson and Southern", 3.05);
+        
+        System.out.println(route.toString() + "\n\n");
+        
+        route.setGoalPace(7);
         
         System.out.println(route.toString());
         

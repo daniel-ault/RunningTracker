@@ -13,6 +13,7 @@ package runningtracker;
 public class Checkpoint {
     private String intersection;
     private double distanceFromStart;
+    private double goalTime;
     private double time;
     
     Checkpoint(String intersection, double distanceFromStart, double time) {
@@ -20,12 +21,16 @@ public class Checkpoint {
         this.distanceFromStart = distanceFromStart;
     }
     
+    public void setGoalTime(double time) { goalTime = time; }
+    
     public String getIntersection() { return this.intersection; }
     public double getDistanceFromStart() { return this.distanceFromStart; }
+    public double getGoalTime() { return this.goalTime; }
     
     @Override
     public String toString() {
         String s = intersection + ":  " + Double.toString(distanceFromStart);
+        s += ",  " + Double.toString(goalTime);
         return s;
     }
 }

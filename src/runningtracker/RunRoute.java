@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class RunRoute {
     private List<Checkpoint> routeList = new ArrayList<>();
-    private double paceGoal;
+    private double paceGoal = 0;
     private double paceActual;
     private double routeLength = 0;
     
@@ -37,15 +37,31 @@ public class RunRoute {
             System.out.println("ERROR: need to add start point first");
         }
         else if (routeList.get(routeList.size()-1).getDistanceFromStart() > distanceFromStart) {
-            System.out.println("ERROR: distance must be larger than previous checkpoint");
             //ERROR: distance must be larger than previous checkpoint
+            System.out.println("ERROR: distance must be larger than previous checkpoint");
         }
         else {
-            routeList.add(new Checkpoint(intersection, distanceFromStart, 0));
+            Checkpoint c = new Checkpoint(intersection, distanceFromStart, 0);
+            if (paceGoal != 0)
+                c.setGoalTime((c.getDistanceFromStart()/paceGoal)*60);
+            else
+                c.setGoalTime(0);
+            routeList.add(c);
             routeLength = distanceFromStart;
         }
     }// addCheckpoint
     
+    public void setGoalPace(double pace) {
+        this.paceGoal = pace;
+        
+        if (routeList.isEmpty())
+            return;
+        
+        for (Checkpoint c : routeList) {
+            double goalTime = (c.getDistanceFromStart()/pace)*60;
+            c.setGoalTime(goalTime);
+        }
+    }
     
     public String toString() {
         String s = "";
