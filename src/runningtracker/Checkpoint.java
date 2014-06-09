@@ -20,6 +20,6 @@ public class Checkpoint {
         this.distanceFromStart = distanceFromStart;
     }
     
-    String getIntersection() { return this.intersection; }
-    double getDistanceFromStart() { return this.distanceFromStart; }
+    public String getIntersection() { return this.intersection; }
+    public double getDistanceFromStart() { return this.distanceFromStart; }
 }

@@ -21,7 +21,7 @@ public class RunRoute {
     
     RunRoute() { }
     
-    private void setStart(String intersection) {
+    public void setStart(String intersection) {
         if (routeList.isEmpty()) {
             routeList.add(new Checkpoint(intersection, 0, 0));
         }
@@ -31,7 +31,7 @@ public class RunRoute {
     }// setStart
     
     
-    private void addCheckpoint(String intersection, double distanceFromStart) {
+    public void addCheckpoint(String intersection, double distanceFromStart) {
         if (routeList.isEmpty()) {
             //ERROR: need to add start point first
         }
