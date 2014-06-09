@@ -11,9 +11,9 @@ package runningtracker;
  * @author Daniel
  */
 public class Checkpoint {
-    String intersection;
-    double distanceFromStart;
-    double time;
+    private String intersection;
+    private double distanceFromStart;
+    private double time;
     
     Checkpoint(String intersection, double distanceFromStart, double time) {
         this.intersection = intersection;

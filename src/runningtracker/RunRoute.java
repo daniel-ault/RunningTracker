@@ -14,10 +14,10 @@ import java.util.List;
  * @author Daniel
  */
 public class RunRoute {
-    List<Checkpoint> routeList = new ArrayList<>();
-    double paceGoal;
-    double paceActual;
-    double routeLength = 0;
+    private List<Checkpoint> routeList = new ArrayList<>();
+    private double paceGoal;
+    private double paceActual;
+    private double routeLength = 0;
     
     RunRoute() { }
     
