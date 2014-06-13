@@ -15,7 +15,7 @@ public class RunningTracker {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         createRoute();
     }
     
@@ -33,11 +33,11 @@ public class RunningTracker {
         route.addCheckpoint("Spottswood and Houston", 2.77);
         route.addCheckpoint("Patterson and Southern", 3.05);
         
-        System.out.println(route.toString() + "\n\n");
+        //System.out.println(route.toString() + "\n\n");
         
         route.setGoalPace(7);
         
-        System.out.println(route.toString());
+        //System.out.println(route.toString());
         
         return route;
     }

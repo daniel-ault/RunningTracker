@@ -11,12 +11,18 @@ package runningtracker;
  * @author Daniel
  */
 public class GUI extends javax.swing.JFrame {
+    
+    private boolean started = false;
+    private long startTime;
+    private RunRoute route = RunningTracker.createRoute();
+    
 
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        
     }
 
     /**
@@ -34,6 +40,7 @@ public class GUI extends javax.swing.JFrame {
         labelGoalPaceTime = new javax.swing.JLabel();
         labelPaceLastCheckpoint = new javax.swing.JLabel();
         labelPaceTotal = new javax.swing.JLabel();
+        labelNextCheckpoint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,23 +61,28 @@ public class GUI extends javax.swing.JFrame {
 
         labelPaceTotal.setText("Overall Pace:");
 
+        labelNextCheckpoint.setText("Next Checkpoint: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(buttonStart)
-                .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonCheckpoint)
-                    .addComponent(labelGoalPace, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelGoalPaceTime, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPaceLastCheckpoint, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(labelPaceTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(58, 58, 58))
+                .addContainerGap(120, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelNextCheckpoint, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(buttonStart)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonCheckpoint)
+                            .addComponent(labelGoalPace, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelGoalPaceTime, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPaceLastCheckpoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelPaceTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,14 +99,18 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(labelPaceLastCheckpoint)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelPaceTotal)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(labelNextCheckpoint)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartActionPerformed
-        // TODO add your handling code here:
+        startTime = System.currentTimeMillis();
+        
+        
     }//GEN-LAST:event_buttonStartActionPerformed
 
     /**
@@ -137,6 +153,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton buttonStart;
     private javax.swing.JLabel labelGoalPace;
     private javax.swing.JLabel labelGoalPaceTime;
+    private javax.swing.JLabel labelNextCheckpoint;
     private javax.swing.JLabel labelPaceLastCheckpoint;
     private javax.swing.JLabel labelPaceTotal;
     // End of variables declaration//GEN-END:variables
