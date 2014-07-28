@@ -27,6 +27,20 @@ public class Checkpoint {
     public double getDistanceFromStart() { return this.distanceFromStart; }
     public double getGoalTime() { return this.goalTime; }
     
+    public String getGoalTimeString() {
+    	String s = "" + (int)Math.floor(goalTime);
+    	double seconds = goalTime - Math.floor(goalTime);
+    	seconds = Math.floor(seconds*60);
+    	
+    	s += ":";
+    	if (seconds<10)
+    		s += "0";
+    	
+    	s += (int)seconds;
+    	
+    	return s;
+    }
+    
     @Override
     public String toString() {
         String s = intersection + ":  " + Double.toString(distanceFromStart);

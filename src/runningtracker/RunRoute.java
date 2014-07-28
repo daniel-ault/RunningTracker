@@ -6,8 +6,12 @@
 
 package runningtracker;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -61,6 +65,74 @@ public class RunRoute {
             double goalTime = (c.getDistanceFromStart()/pace)*60;
             c.setGoalTime(goalTime);
         }
+    }
+    
+    public String[] getStringList() {
+    	String s[] = new String[routeList.size()];
+    	
+    	for (int i=0; i<s.length; i++) {
+    		s[i] = routeList.get(i).getIntersection();
+    	}
+    	
+    	return s;
+    }
+    
+    public ArrayList<Checkpoint> getCheckpointArrayList() { return (ArrayList<Checkpoint>)routeList; }
+    
+    public void saveToCSV(File file) throws FileNotFoundException {
+    	String filename = file.getAbsolutePath();
+    	saveToCSV(filename);
+    }
+    
+    public void saveToCSV(String filename) throws FileNotFoundException {
+    	String s = "intersection,distanceFromStart,paceGoal\n";//,goalTime,time\n";
+    	
+    	boolean paceGoalWritten = false;
+    	
+    	for (Checkpoint checkpoint : this.routeList) {
+    		s += checkpoint.getIntersection() +",";
+    		s += checkpoint.getDistanceFromStart() + ",";
+    		//makes sure pace goal is only written once
+    		if (!paceGoalWritten) {
+    			s += paceGoal + "\n";
+    			paceGoalWritten = true;
+    		}
+    		else 
+    			s += "\n";
+    		//s += checkpoint.getGoalTime() + ",\n";
+    	}
+    	
+    	PrintWriter out = new PrintWriter(filename);
+    	out.println(s);
+    	out.close();
+    }
+    
+    public static RunRoute loadFromCSV(String filename) throws FileNotFoundException {
+    	Scanner scanner = new Scanner(new File(filename));
+    	
+    	scanner.nextLine();
+    	double paceGoal = 0;
+    	
+    	RunRoute route = new RunRoute();
+    	
+    	while (scanner.hasNext()) {
+    		Scanner nextLine = new Scanner(scanner.nextLine());
+    		
+    		String intersection = nextLine.next();
+    		double distanceFromStart = Double.parseDouble(nextLine.next());
+    		
+    		if (paceGoal == 0) {
+    			paceGoal = Double.parseDouble(nextLine.next());
+    			route.setGoalPace(paceGoal);
+    		}
+    		else {
+    			nextLine.next();
+    		}
+    		
+    		route.addCheckpoint(intersection, distanceFromStart);
+    	}
+    	
+    	return route;
     }
     
     public String toString() {
