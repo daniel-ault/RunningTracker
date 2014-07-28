@@ -118,6 +118,8 @@ public class RunRoute {
     	while (scanner.hasNext()) {
     		Scanner nextLine = new Scanner(scanner.nextLine());
     		
+                nextLine.useDelimiter(",");
+                
     		String intersection = nextLine.next();
     		double distanceFromStart = Double.parseDouble(nextLine.next());
     		
@@ -125,11 +127,14 @@ public class RunRoute {
     			paceGoal = Double.parseDouble(nextLine.next());
     			route.setGoalPace(paceGoal);
     		}
-    		else {
-    			nextLine.next();
-    		}
     		
-    		route.addCheckpoint(intersection, distanceFromStart);
+                
+                if (distanceFromStart == 0) {
+                    route.setStart(intersection);
+                }
+                else {
+                    route.addCheckpoint(intersection, distanceFromStart);
+                }
     	}
     	
     	return route;

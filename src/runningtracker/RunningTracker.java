@@ -6,6 +6,10 @@
 
 package runningtracker;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Daniel
@@ -15,8 +19,21 @@ public class RunningTracker {
     /**
      * @param args the command line arguments
      */
-    public static void main2(String[] args) {
-        createRoute();
+    public static void main(String[] args) {
+        try {
+            RunRoute route = RunRoute.loadFromCSV("/home/daniel/Documents/test.csv");// = createRoute();
+            
+            System.out.println(route.toString());
+            /*
+            try {
+            route.saveToCSV("/home/daniel/Documents/test.csv");
+            } catch (FileNotFoundException ex) {
+            Logger.getLogger(RunningTracker.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            */
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RunningTracker.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static RunRoute createRoute() {
